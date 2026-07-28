@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilal - JS Practice Projects Bento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #111827;
+            min-height: 100vh;
+            padding: 0 32px;
+            overflow-x: hidden;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        /* loader */
+        .loader-overlay {
+            position: fixed;
+            inset: 0;
+            background: #ffffff;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.45s ease, visibility 0.45s ease;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .loader-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .loader-spinner {
+            width: 44px;
+            height: 44px;
+            border: 4px solid #e5e7eb;
+            border-top-color: #111827;
+            border-radius: 50%;
+            animation: spin 0.75s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* HEADER */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Caveat', 'Brush Script MT', 'Comic Sans MS', cursive;
+            font-size: 42px;
+            font-weight: 700;
+            color: #000;
+            letter-spacing: -0.5px;
+            line-height: 1;
+            user-select: none;
+        }
+
+        .email-button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 26px;
+            background-color: #000;
+            color: #fff;
+            border-radius: 50px;
+            font-size: 14px;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: all 0.25s ease;
+            letter-spacing: -0.2px;
+        }
+
+        .email-button svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        /* PROFILE SECTION */
+        .profile-section {
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 28px;
+            max-width: 1400px;
+            margin: 100px auto 35px;
+            padding: 0 10px;
+        }
+
+        @media (max-width: 768px) {
+            .profile-section {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 18px;
+            }
+        }
+
+        .profile-avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: #111827;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 2.2rem;
+            flex-shrink: 0;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+            border: 3px solid #f3f4f6;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-avatar:hover {
+            transform: scale(1.04);
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .profile-info h2 {
+            font-family: 'Caveat', 'Brush Script MT', cursive;
+            font-size: 34px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 2px;
+            color: #000;
+        }
+
+        .profile-info .subtitle {
+            font-size: 15px;
+            color: #6b7280;
+            font-weight: 500;
+            margin-bottom: 6px;
+            letter-spacing: -0.2px;
+        }
+
+        .profile-info .bio {
+            font-size: 14px;
+            color: #374151;
+            line-height: 1.55;
+            max-width: 520px;
+        }
+
+        /* GITHUB STATS PILLS */
+        .github-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .stat-pill {
+            background-color: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            color: #111827;
+            padding: 7px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+            transition: all 0.2s ease;
+            letter-spacing: -0.2px;
+        }
+
+
+        .stat-pill svg {
+            width: 15px;
+            height: 15px;
+            flex-shrink: 0;
+        }
+
+        /* SOCIAL FOLLOW PILLS */
+        .social-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .social-pill {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            color: #fff;
+            letter-spacing: -0.2px;
+            transition: all 0.25s ease;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+            cursor: pointer;
+            border: none;
+        }
+
+        .social-pill svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .social-pill.github {
+            background-color: #24292e;
+            color: #fff;
+        }
+
+        .social-pill.twitter {
+            background-color: #0f1419;
+            color: #fff;
+        }
+
+        .social-pill.linkedin {
+            background-color: #0A66C2;
+            color: #fff;
+        }
+
+        .social-pill.portfolio {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: #fff;
+        }
+
+        .social-pill.instagram {
+            background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: #fff;
+        }
+
+        /* CENTERED SEARCH BAR */
+        .search-container {
+            max-width: 650px;
+            margin-block: 50px;
+            position: relative;
+            margin-left: 370px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 16px 24px 16px 52px;
+            background-color: #f3f4f6;
+            border: 1px solid transparent;
+            border-radius: 50px;
+            font-size: 16px;
+            color: #111827;
+            outline: none;
+            transition: all 0.25s ease;
+            letter-spacing: -0.2px;
+        }
+
+        .search-input:focus {
+            background-color: #ffffff;
+            border-color: #000000;
+        }
+
+        .search-input::placeholder {
+            color: #9ca3af;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            fill: #9ca3af;
+            pointer-events: none;
+        }
+
+        /* BENTO GRID */
+        .bento-container {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-bottom: 100px;
+        }
+
+        @media (min-width: 768px) {
+            .bento-container {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 440px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .bento-container {
+                grid-template-columns: repeat(3, 1fr);
+                grid-auto-rows: 500px;
+            }
+
+            .bento-card.span-col-2 {
+                grid-column: span 2;
+            }
+
+            .bento-card.span-row-2 {
+                grid-row: span 2;
+            }
+        }
+
+        /* BENTO CARD DESIGN */
+        .bento-card {
+            border-radius: 22px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.35s ease;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+            z-index: 2;
+            padding-inline: 10px;
+            flex-shrink: 0;
+        }
+
+        .card-title {
+            font-size: 30px;
+            font-weight: 700;
+            letter-spacing: -0.4px;
+            font-family: 'Caveat', 'Brush Script MT', cursive;
+        }
+
+        .project-tag {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 6px 15px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #111827;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            letter-spacing: -0.2px;
+            flex-shrink: 0;
+        }
+
+        .card-preview {
+            width: 100%;
+            flex: 1;
+            min-height: 300px;
+            border-radius: 16px;
+            background: #ffffff;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin: 6px 0;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .bento-card:hover .card-preview {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (min-width: 1200px) {
+            .card-preview {
+                min-height: 350px;
+            }
+        }
+
+        .card-preview iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            pointer-events: none;
+            display: block;
+        }
+
+        .card-bottom {
+            display: flex;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            align-items: center;
+            margin-top: 10px;
+            z-index: 2;
+            flex-shrink: 0;
+        }
+
+        .card-link-text {
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            letter-spacing: -0.2px;
+            transition: gap 0.25s ease;
+        }
+
+        .bento-card:hover .card-link-text {
+            gap: 10px;
+        }
+
+        /* Color Palette Themes */
+        .theme-blue,
+        .theme-cream,
+        .theme-rust,
+        .theme-yellow,
+        .theme-orange,
+        .theme-mint,
+        .theme-purple {
+            background-color: #fdfbf2;
+            color: #1c1917;
+        }
+
+        .theme-rust .project-tag {
+            background: rgba(255, 255, 255, 0.8);
+            color: #111827;
+            border-color: rgba(0, 0, 0, 0.06);
+        }
+
+        .theme-rust .card-link-text {
+            color: #1c1917;
+        }
+
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 80px;
+            font-size: 18px;
+            color: #6b7280;
+            letter-spacing: -0.3px;
+        }
+
+        /* EMAIL MODAL */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 36px 32px;
+            width: 90%;
+            max-width: 450px;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+            transform: translateY(30px) scale(0.94);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 18px;
+            background: #f3f4f6;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            transition: all 0.2s ease;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            background: #e5e7eb;
+            color: #111827;
+        }
+
+        .modal-title {
+            font-family: 'Caveat', 'Brush Script MT', cursive;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #000;
+            letter-spacing: -0.5px;
+        }
+
+        .modal-subtitle {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 22px;
+            letter-spacing: -0.2px;
+        }
+
+        .modal-field {
+            margin-bottom: 16px;
+        }
+
+        .modal-field label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 5px;
+            letter-spacing: -0.1px;
+            text-transform: uppercase;
+        }
+
+        .modal-field input,
+        .modal-field textarea {
+            width: 100%;
+            padding: 13px 16px;
+            border: 1.5px solid #e5e7eb;
+            border-radius: 14px;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            transition: all 0.2s ease;
+            background: #f9fafb;
+            color: #111827;
+            letter-spacing: -0.2px;
+            resize: vertical;
+        }
+
+        .modal-field input:focus,
+        .modal-field textarea:focus {
+            border-color: #000;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.04);
+        }
+
+        .modal-field textarea {
+            min-height: 110px;
+        }
+
+        .modal-send-btn {
+            width: 100%;
+            padding: 14px;
+            background: #000;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            letter-spacing: -0.2px;
+            transition: all 0.25s ease;
+            margin-top: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .modal-send-btn:hover {
+            opacity: 0.88;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .modal-send-btn:active {
+            transform: scale(0.97);
+        }
+
+        .modal-send-btn.success {
+            background: #10b981;
+            pointer-events: none;
+        }
+
+        .modal-send-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .modal-success-msg {
+            text-align: center;
+            color: #10b981;
+            font-weight: 600;
+            font-size: 14px;
+            margin-top: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            letter-spacing: -0.2px;
+        }
+
+        .modal-success-msg.visible {
+            opacity: 1;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 767px) {
+            .header {
+                padding: 16px 10px;
+            }
+
+            .logo {
+                font-size: 32px;
+            }
+
+            .email-button {
+                padding: 9px 18px;
+                font-size: 13px;
+                gap: 5px;
+            }
+
+            .email-button svg {
+                width: 14px;
+                height: 14px;
+            }
+
+            .profile-section {
+                padding: 0 6px;
+                gap: 16px;
+            }
+
+            .profile-avatar {
+                width: 85px;
+                height: 85px;
+                font-size: 1.7rem;
+            }
+
+            .profile-info h2 {
+                font-size: 28px;
+            }
+
+            .profile-info .subtitle {
+                font-size: 13px;
+            }
+
+            .profile-info .bio {
+                font-size: 13px;
+            }
+
+            .stat-pill {
+                font-size: 12px;
+                padding: 6px 12px;
+                gap: 5px;
+            }
+
+            .stat-pill svg {
+                width: 13px;
+                height: 13px;
+            }
+
+            .social-pill {
+                font-size: 12px;
+                padding: 7px 13px;
+                gap: 5px;
+            }
+
+            .social-pill svg {
+                width: 14px;
+                height: 14px;
+            }
+
+            .search-container {
+                margin-bottom: 30px;
+            }
+
+            .bento-container {
+                gap: 18px;
+            }
+
+            .bento-card {
+                border-radius: 20px;
+                padding: 16px;
+            }
+
+            .card-preview {
+                min-height: 220px;
+                border-radius: 12px;
+            }
+
+            .card-title {
+                font-size: 17px;
+            }
+
+            .modal-card {
+                padding: 24px 20px;
+                border-radius: 22px;
+                width: 94%;
+            }
+
+            .modal-title {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!--loader -->
+    <div class="loader-overlay" id="loaderOverlay">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!--header -->
+    <header class="header">
+        <div class="logo">Byllzz</div>
+        <button class="email-button" id="openModalBtn" aria-label="Open contact form">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="M22 4L12 13L2 4" />
+            </svg>
+            bilalmlkdev@gmail.com
+        </button>
+    </header>
+
+    <!--profile section -->
+    <section class="profile-section">
+        <div class="profile-avatar" id="avatar-container">
+            <span id="avatar-fallback">B</span>
+            <img id="github-avatar" src="" alt="Bilal's GitHub Avatar">
+        </div>
+
+        <div class="profile-info">
+            <h2>Bilal Malik</h2>
+            <div class="subtitle">Frontend Developer &amp; Designer</div>
+            <div class="bio">
+                Interactive JavaScript laboratory featuring 23 custom mini-apps and project builds with live interactive
+                previews.
+            </div>
+
+            <!--github stats pills -->
+            <div class="github-stats">
+                <div class="stat-pill">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2l2.4 7.4h7.6l-6 4.6 2.4 7.4-6-4.6-6 4.6 2.4-7.4-6-4.6h7.6z" />
+                    </svg>
+                    <span id="stat-stars">...</span> Stars
+                </div>
+                <div class="stat-pill">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
+                    </svg>
+                    <span id="stat-followers">...</span> Followers
+                </div>
+                <div class="stat-pill">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M20 6h-8l-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V6h5.17l2 2H20v10z" />
+                    </svg>
+                    <span id="stat-repos">...</span> Repos
+                </div>
+            </div>
+
+            <!--social follow pills -->
+            <div class="social-pills">
+                <a href="https://github.com/byllzz" target="_blank" rel="noopener" class="social-pill github"
+                    title="Follow on GitHub">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.418-1.305.762-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z" />
+                    </svg>
+                    GitHub
+                </a>
+                <a href="https://x.com/bilalmlkdev" target="_blank" rel="noopener" class="social-pill twitter"
+                    title="Follow on X (Twitter)">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
+                    X
+                </a>
+                <a href="https://linkedin.com/in/bilalmlkdev" target="_blank" rel="noopener"
+                    class="social-pill linkedin" title="Connect on LinkedIn">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                    </svg>
+                    LinkedIn
+                </a>
+                <a href="https://bilalmlkdev.vercel.app" target="_blank" rel="noopener" class="social-pill portfolio"
+                    title="Visit Portfolio">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+                    </svg>
+                    Portfolio
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!--searchbar -->
+    <div class="search-container">
+        <svg class="search-icon" viewBox="0 0 24 24">
+            <path
+                d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+        </svg>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search projects by name or number..." />
+    </div>
+
+    <!--bento grid -->
+    <main class="bento-container" id="bentoGrid"></main>
+
+    <!--email modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-card">
+            <button class="modal-close" id="modalCloseBtn" aria-label="Close modal">&times;</button>
+            <div class="modal-title">Let's Connect</div>
+            <div class="modal-subtitle">Drop me a message — I'd love to hear from you!</div>
+            <form id="contactForm" action="https://formsubmit.co/bilalmlkdev@gmail.com" method="POST"
+                target="hiddenIframe">
+                <input type="hidden" name="_subject" value="New message from Bilal's Portfolio">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_next" value="">
+                <div class="modal-field">
+                    <label for="senderName">Your Name</label>
+                    <input type="text" id="senderName" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="modal-field">
+                    <label for="senderEmail">Your Email</label>
+                    <input type="email" id="senderEmail" name="email" placeholder="you@example.com" required>
+                </div>
+                <div class="modal-field">
+                    <label for="senderMsg">Message</label>
+                    <textarea id="senderMsg" name="message" placeholder="Tell me what's on your mind..."
+                        required></textarea>
+                </div>
+                <button type="submit" class="modal-send-btn" id="modalSendBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13" />
+                        <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                    </svg>
+                    Send Message
+                </button>
+                <div class="modal-success-msg" id="modalSuccessMsg">✓ Message sent successfully!</div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Hidden iframe for form submission -->
+    <iframe name="hiddenIframe" id="hiddenIframe"
+        style="display:none;width:0;height:0;border:none;position:absolute;visibility:hidden;"
+        title="Hidden form submission target"></iframe>
+
+    <script>
+        (function () {
+            //  LOADER LOGIC
+            const loaderOverlay = document.getElementById('loaderOverlay');
+            window.addEventListener('load', function () {
+                setTimeout(function () {
+                    loaderOverlay.classList.add('hidden');
+                }, 500);
+            });
+
+            //  DOM ELEMENTS
+            const modalOverlay = document.getElementById('modalOverlay');
+            const openModalBtn = document.getElementById('openModalBtn');
+            const modalCloseBtn = document.getElementById('modalCloseBtn');
+            const contactForm = document.getElementById('contactForm');
+            const modalSendBtn = document.getElementById('modalSendBtn');
+            const modalSuccessMsg = document.getElementById('modalSuccessMsg');
+            const hiddenIframe = document.getElementById('hiddenIframe');
+            const body = document.body;
+
+            //  MODAL LOGIC
+            function openModal() {
+                modalOverlay.classList.add('active');
+                body.classList.add('modal-open');
+                document.getElementById('senderName').focus();
+                contactForm.reset();
+                modalSendBtn.classList.remove('success');
+                modalSendBtn.innerHTML = `
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13" />
+                            <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                        </svg>
+                        Send Message
+                    `;
+                modalSendBtn.disabled = false;
+                modalSuccessMsg.classList.remove('visible');
+            }
+
+            function closeModal() {
+                modalOverlay.classList.remove('active');
+                body.classList.remove('modal-open');
+            }
+
+            openModalBtn.addEventListener('click', openModal);
+            modalCloseBtn.addEventListener('click', closeModal);
+            modalOverlay.addEventListener('click', function (e) {
+                if (e.target === modalOverlay) {
+                    closeModal();
+                }
+            });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+
+            //  FORM SUBMISSION
+            hiddenIframe.addEventListener('load', function () {
+                modalSendBtn.classList.add('success');
+                modalSendBtn.innerHTML = `
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                        Sent!
+                    `;
+                modalSendBtn.disabled = true;
+                modalSuccessMsg.classList.add('visible');
+                setTimeout(function () {
+                    closeModal();
+                    setTimeout(function () {
+                        modalSendBtn.classList.remove('success');
+                        modalSendBtn.innerHTML = `
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="22" y1="2" x2="11" y2="13" />
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                                </svg>
+                                Send Message
+                            `;
+                        modalSendBtn.disabled = false;
+                        modalSuccessMsg.classList.remove('visible');
+                        contactForm.reset();
+                    }, 400);
+                }, 2500);
+            });
+
+            contactForm.addEventListener('submit', function (e) {
+                const nextInput = contactForm.querySelector('input[name="_next"]');
+                if (nextInput) {
+                    nextInput.value = window.location.href;
+                }
+                modalSendBtn.textContent = 'Sending...';
+                modalSendBtn.style.opacity = '0.7';
+                setTimeout(function () {
+                    if (!modalSendBtn.classList.contains('success')) {
+                        modalSendBtn.style.opacity = '1';
+                    }
+                }, 3000);
+            });
+
+            //  GITHUB API FETCH LOGIC
+            async function fetchGitHubData() {
+                const username = 'byllzz';
+                try {
+                    const userRes = await fetch(`https://api.github.com/users/${username}`);
+                    const userData = await userRes.json();
+                    const reposRes = await fetch(
+                        `https://api.github.com/users/${username}/repos?per_page=100`);
+                    const reposData = await reposRes.json();
+                    const totalStars = reposData.reduce((acc, repo) => acc + repo.stargazers_count,
+                        0);
+
+                    const avatarImg = document.getElementById('github-avatar');
+                    const fallback = document.getElementById('avatar-fallback');
+                    if (userData.avatar_url) {
+                        avatarImg.src = userData.avatar_url;
+                        avatarImg.style.display = 'block';
+                        fallback.style.display = 'none';
+                    }
+
+                    document.getElementById('stat-followers').textContent = userData.followers || 0;
+                    document.getElementById('stat-repos').textContent = userData.public_repos || 0;
+                    document.getElementById('stat-stars').textContent = totalStars || 0;
+                } catch (error) {
+                    console.error("Failed to fetch GitHub data:", error);
+                    document.getElementById('stat-followers').textContent = "0";
+                    document.getElementById('stat-repos').textContent = "0";
+                    document.getElementById('stat-stars').textContent = "0";
+                }
+            }
+
+            fetchGitHubData();
+
+            //  BENTO GRID RENDER LOGIC
+            const projects = [
+                { title: "Github Profile Finder", folder: "01-github-profile-finder", span: "span-col-2" },
+                { title: "Weather App", folder: "02-weather-app", span: "" },
+                { title: "Memory Card Game", folder: "20-memory-card-game", span: "span-row-2" },
+                { title: "Todo App", folder: "03-todo-app", span: "" },
+                { title: "Drawing Board", folder: "16-drawing-board", span: "span-col-2" },
+                { title: "Digital Clock", folder: "04-digital-clock", span: "" },
+                { title: "Random Quotes", folder: "05-random-quotes", span: "" },
+                { title: "Age Calculator", folder: "06-age-calculator", span: "" },
+                { title: "Countdown Timer", folder: "07-countdown-timer", span: "" },
+                { title: "QR Code Generator", folder: "08-QR-code-gen", span: "span-col-2" },
+                { title: "Typing Speed Test", folder: "09-typing-speed-test", span: "" },
+                { title: "Tabs Navigation", folder: "10-tabs-navigation", span: "" },
+                { title: "Password Generator", folder: "11-password-generator", span: "" },
+                { title: "Currency Converter", folder: "12-currency-converter", span: "" },
+                { title: "Simple Calculator", folder: "13-simple-calculator", span: "" },
+                { title: "Color Picker", folder: "14-color-picker", span: "" },
+                { title: "Stopwatch", folder: "15-stopwatch", span: "" },
+                { title: "Custom Modal Popup", folder: "17-custom-modal-popup", span: "" },
+                { title: "Image Slider", folder: "18-image-slider", span: "span-col-2" },
+                { title: "Form Validator", folder: "19-form-validator", span: "" },
+                { title: "Theme Switcher", folder: "21-theme-switcher", span: "" },
+                { title: "Pomodoro Timer", folder: "22-pomodoro-timer", span: "" },
+                { title: "Notes App", folder: "23-notes-app", span: "" }
+            ];
+
+            const reversedProjects = [...projects].reverse();
+            const grid = document.getElementById('bentoGrid');
+            const searchInput = document.getElementById('searchInput');
+
+            function renderGrid(items) {
+                grid.innerHTML = '';
+                if (items.length === 0) {
+                    grid.innerHTML = '<div class="empty-state">No matching projects found.</div>';
+                    return;
+                }
+                items.forEach((proj) => {
+                    const number = proj.folder.split('-')[0];
+                    const projectUrl = './' + proj.folder + '/index.html';
+                    const card = document.createElement('a');
+                    card.href = projectUrl;
+                    card.target = '_blank';
+                    card.rel = 'noopener';
+                    card.className = 'bento-card theme-cream ' + (proj.span || '');
+                    card.innerHTML = `
+                        <div class="card-preview">
+                            <iframe src="${projectUrl}" loading="lazy" title="Preview of ${proj.title}"></iframe>
+                        </div>
+                        <div class="card-top">
+                            <div class="card-title">${proj.title}</div>
+                            <div class="project-tag">#${number}</div>
+                        </div>
+                        <div class="card-bottom">
+                            <span class="card-link-text">Launch App &#8599;</span>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
+
+            searchInput.addEventListener('input', function (e) {
+                const query = e.target.value.toLowerCase().trim();
+                const filtered = reversedProjects.filter(function (p) {
+                    return p.title.toLowerCase().includes(query) ||
+                        p.folder.toLowerCase().includes(query);
+                });
+                renderGrid(filtered);
+            });
+
+            renderGrid(reversedProjects);
+        })();
+    </script>
+</body>
+
+</html>
