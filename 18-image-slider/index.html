@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Image Slider</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .slider {
+      position: relative;
+      width: 400px;
+      margin: 0 auto;
+    }
+
+    .slider img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .controls {
+      margin-top: 10px;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ccc;
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background: #333;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="slider">
+    <img id="sliderImg" src="https://picsum.photos/400/250?random=0" alt="Slide">
+    <div class="controls">
+      <button id="prevBtn">Prev</button>
+      <button id="nextBtn">Next</button>
+    </div>
+    <div id="dots"></div>
+  </div>
+  <script src="index.js"></script>
+</body>
+
+</html>
