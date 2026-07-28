@@ -3,7 +3,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/byllzz/JS-Practice-Projects">
+  <a href="https://seepreview.vercel.app">
   <img src="./projectLogo.svg" alt="Project Logo" width="80" height="80">
 </a>
 
