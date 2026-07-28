@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a href="https://seepreview.vercel.app">
-  <img src="./projectLogo.svg" alt="Project Logo" width="80" height="80">
+  <img src="./projectLogo.svg" alt="Project Logo" width="110" height="80">
 </a>
 
   <h3 align="center">JS Practice Projects</h3>
