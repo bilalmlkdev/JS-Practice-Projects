@@ -1,33 +1,34 @@
 <p align="center">
   <a href="https://seepreview.vercel.app/">
-    <img src="./projectLogo.svg" alt="JS Practice Projects" width="100" height="72">
+    <img src="./projectLogo.svg" alt="JS Practice Projects" width="150" height="150">
   </a>
 </p>
 
-
 <h1 align="center">JS Practice Projects</h1>
 
-<p align="center"> 23 interactive vanilla JavaScript mini-apps, browsable live from a single dashboard - no frameworks, no build step.</p>
+<p align="center"> 23 interactive vanilla <a href="https://seepreview.vercel.app/" target="_blank">JavaScript mini-apps</a>, browsable live from a single dashboard.</p>
 
 <p align="center">
-  <a href="https://seepreview.vercel.app/"><strong>Live Demo</strong></a>
-  ·
-  <a href="https://github.com/bilalmlkdev/JS-Practice-Projects/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
-  ·
-  <a href="https://github.com/bilalmlkdev/JS-Practice-Projects/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white" alt="HTML5" />
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white" alt="CSS3" />
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black" alt="JavaScript" />
+  <a href="https://github.com/byllzz/Js-practice-Projects/stargazers" target="_blank">
+    <img src="https://img.shields.io/github/stars/byllzz/Js-practice-Projects?style=flat" alt="GitHub stars">
+  </a>
+  <a href="https://github.com/byllzz/Js-practice-Projects/blob/main/LICENSE" target="_blank">
+    <img src="https://img.shields.io/github/license/byllzz/Js-practice-Projects?style=flat" alt="License">
+  </a>
 </p>
+
+<p align="center">
+  <i>Created by <a href="https://github.com/bilalmkdev" target="_blank">bilalmlkdev</a></i><br>
+  <i>Site by <a href="https://bilalmlkdev.vercel.ap" target="_blank">Bilal Malik</a></i>
+</p>
+
 
 [![JS Practice Projects Dashboard](https://raw.githubusercontent.com/bilalmlkdev/JS-Practice-Projects/main/screenshot.png)](https://seepreview.vercel.app/)
 
-<p align="center">
-  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5" />
-  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3" />
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript" />
-  <img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white" alt="Vercel" />
-  <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="MIT License" />
-</p>
 
----
 
 ## About
 
