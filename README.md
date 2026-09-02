@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://seepreview.vercel.app/">
-    <img src="./projectLogo.svg" alt="JS Practice Projects" width="150" height="150">
+    <img src="./projectLogo.svg" alt="JS Practice Projects" width="100%" height="150">
   </a>
 </p>
 
@@ -21,8 +21,18 @@
 </p>
 
 <p align="center">
-  <i>Created by <a href="https://github.com/bilalmlkdev" target="_blank">bilalmlkdev</a></i><br>
-  <i>Site by <a href="https://bilalmlkdev.vercel.app" target="_blank">Bilal Malik</a></i>
+<a href="https://seepreview.vercel.app/" target="_blank">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://shieldcn.dev/badge/Live%20Preview-Js--practice--Projects?logo=eye&logoColor=currentColor&variant=outline&mode=dark&font=geist" />
+    <img alt="Live Preview" src="https://shieldcn.dev/badge/Live%20Preview-Js--practice--Projects?logo=eye&logoColor=currentColor&variant=outline&mode=light&font=geist" />
+  </picture>
+</a>
+</p>
+
+
+<p align="center">
+  <i>Created by <a href="https://bilalmlkdev.vercel.app" target="_blank">Bilal Malik</a></i><br>
+  <i>Follow on Github <a href="https://github.com/bilalmlkdev" target="_blank">bilalmlkdev</a></i>
 </p>
 
 
@@ -124,6 +134,7 @@ git push origin feat/your-project-name
 ```
 
 Then open a pull request describing your changes.
+
 
 ## License
 
