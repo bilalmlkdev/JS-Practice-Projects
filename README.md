@@ -12,17 +12,17 @@
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white" alt="HTML5" />
   <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white" alt="CSS3" />
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black" alt="JavaScript" />
-  <a href="https://github.com/byllzz/Js-practice-Projects/stargazers" target="_blank">
-    <img src="https://img.shields.io/github/stars/byllzz/Js-practice-Projects?style=flat" alt="GitHub stars">
+  <a href="https://github.com/bilalmlkdev/Js-practice-Projects/stargazers" target="_blank">
+    <img src="https://img.shields.io/github/stars/bilalmlkdev/Js-practice-Projects?style=flat" alt="GitHub stars">
   </a>
-  <a href="https://github.com/byllzz/Js-practice-Projects/blob/main/LICENSE" target="_blank">
-    <img src="https://img.shields.io/github/license/byllzz/Js-practice-Projects?style=flat" alt="License">
+  <a href="https://github.com/bilalmlkdev/Js-practice-Projects/blob/main/LICENSE" target="_blank">
+    <img src="https://img.shields.io/github/license/bilalmlkdev/Js-practice-Projects?style=flat" alt="License">
   </a>
 </p>
 
 <p align="center">
-  <i>Created by <a href="https://github.com/bilalmkdev" target="_blank">bilalmlkdev</a></i><br>
-  <i>Site by <a href="https://bilalmlkdev.vercel.ap" target="_blank">Bilal Malik</a></i>
+  <i>Created by <a href="https://github.com/bilalmlkdev" target="_blank">bilalmlkdev</a></i><br>
+  <i>Site by <a href="https://bilalmlkdev.vercel.app" target="_blank">Bilal Malik</a></i>
 </p>
 
 
