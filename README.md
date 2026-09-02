@@ -15,13 +15,13 @@
     <br />
     <a href="https://seepreview.vercel.app/">View Live Demo</a>
     &middot;
-    <a href="https://github.com/byllzz/JS-Practice-Projects/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://github.com/bilalmlkdev/JS-Practice-Projects/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     &middot;
-    <a href="https://github.com/byllzz/JS-Practice-Projects/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://github.com/bilalmlkdev/JS-Practice-Projects/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
 </div>
 
-[![JS Practice Projects Dashboard](https://raw.githubusercontent.com/byllzz/JS-Practice-Projects/main/screenshot.png)](https://seepreview.vercel.app/)
+[![JS Practice Projects Dashboard](https://raw.githubusercontent.com/bilalmlkdev/JS-Practice-Projects/main/screenshot.png)](https://seepreview.vercel.app/)
 
 This repository is my personal JavaScript practice playground. I wanted a place to solidify my core front-end skills by building real, usable mini-apps without the clutter of heavy frameworks.
 
@@ -153,7 +153,7 @@ Before you begin, make sure you have:
 #### 1. Clone the repository
 
 ```bash
-git clone https://github.com/byllzz/JS-Practice-Projects.git
+git clone https://github.com/bilalmlkdev/JS-Practice-Projects.git
 ```
 
 #### 2. Navigate to the project folder
@@ -266,7 +266,7 @@ Contributions are always welcome! Whether you've found a bug, have an idea for a
 2. **Clone** your fork locally.
 
 ```bash
-git clone https://github.com/byllzz/JS-Practice-Projects.git
+git clone https://github.com/bilalmlkdev/JS-Practice-Projects.git
 ```
 
 3. Create a new feature branch.
@@ -307,8 +307,8 @@ Every contribution, no matter how small, helps make this project better.
 
 A big thank you to everyone who has contributed to this project!
 
-<a href="https://github.com/byllzz/JS-Practice-Projects/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=byllzz/JS-Practice-Projects" alt="Project Contributors" />
+<a href="https://github.com/bilalmlkdev/JS-Practice-Projects/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=bilalmlkdev/JS-Practice-Projects" alt="Project Contributors" />
 </a>
 
 <p align="right">(<a href="#readme-top">Back to Top ↑</a>)</p>
@@ -322,22 +322,22 @@ A big thank you to everyone who has contributed to this project!
 
 <p align="left">
   <img
-    src="https://github.com/byllzz.png"
+    src="https://github.com/bilalmlkdev.png"
     alt="Bilal Malik"
     width="120"
     style="border-radius:8px"
   />
 </p>
 
-<h3 align="left">Bilal Malik (byllzz)</h3>
+<h3 align="left">Bilal Malik (bilalmlkdev)</h3>
 
 <p align="left">
   Front-End Developer • JavaScript Enthusiast • Open Source Contributor
 </p>
 
 <p align="left">
-  <a href="https://github.com/byllzz">
-    <img src="https://img.shields.io/badge/GitHub-byllzz-181717?style=for-the-badge&logo=github" alt="GitHub" />
+  <a href="https://github.com/bilalmlkdev">
+    <img src="https://img.shields.io/badge/GitHub-bilalmlkdev-181717?style=for-the-badge&logo=github" alt="GitHub" />
   </a> <br>
   <a href="https://x.com/bilalmlkdev">
     <img src="https://img.shields.io/badge/@bilalmlkdev-000000?style=for-the-badge&logo=x&logoColor=white" alt="X (Twitter)" />

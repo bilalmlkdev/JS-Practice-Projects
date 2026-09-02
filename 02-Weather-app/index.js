@@ -56,7 +56,7 @@ function wrapper() {
     <h1 id="city-title">Search City...</h1>
     <h2 id="country"></h2>
 
-    <img id="weather-icon" src="./assests/sunny.png" width="120" height="120"/>
+    <img id="weather-icon" src="./assets/sunny.png" width="120" height="120"/>
 
     <h1 id="temp-title"></h1>
     <p id="description"></p>
