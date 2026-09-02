@@ -97,12 +97,12 @@
         .search-input:focus { border-bottom-color: var(--ink); }
         .search-input::placeholder { color: var(--ink-muted); }
 
-        .grid-container { max-width: 1100px; margin: 0 auto 60px; padding: 0 32px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--rule-strong); border-left: 1px solid var(--rule-strong); }
+        .grid-container { max-width: 1100px; margin: 0 auto 60px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--rule-strong); border-left: 1px solid var(--rule-strong); }
         .empty-state { grid-column: 1 / -1; padding: 60px 20px; text-align: center; color: var(--ink-muted); font-family: var(--serif); font-size: 16px; border-right: 1px solid var(--rule-strong); border-bottom: 1px solid var(--rule-strong); }
         .proj-card { display: block; border-right: 1px solid var(--rule-strong); border-bottom: 1px solid var(--rule-strong); padding: 20px; transition: background 0.15s ease; position: relative; }
         .proj-card:hover { background: var(--paper-off); }
         .proj-num { font-family: var(--mono); font-size: 11px; color: var(--ink-muted); margin-bottom: 12px; }
-        .proj-preview { height: 150px; border: 1px solid var(--rule); background: #fff; margin-bottom: 14px; overflow: hidden; position: relative; } /* Hardcoded white here so iframes don't look weird if they don't support dark mode natively */
+        .proj-preview { height: 150px; border: 1px solid var(--rule); background: #fff; margin-bottom: 14px; overflow: hidden; position: relative; }
         .proj-preview iframe { width: 250%; height: 250%; transform: scale(0.4); transform-origin: top left; border: none; pointer-events: none; }
         .proj-title { font-family: var(--serif); font-size: 18px; font-weight: 500; line-height: 1.25; margin-bottom: 8px; }
         .proj-link { font-size: 12px; color: var(--ink-muted); display: flex; align-items: center; gap: 5px; }
@@ -375,31 +375,74 @@
                 }, 3000);
             });
 
+            function renderGitHubStats(data) {
+                const avatarImg = document.getElementById('github-avatar');
+                const fallback = document.getElementById('avatar-fallback');
+
+                if (data.avatarUrl) {
+                    avatarImg.src = data.avatarUrl;
+                    avatarImg.style.display = 'block';
+                    fallback.style.display = 'none';
+                }
+
+                document.getElementById('stat-followers').textContent = data.followers;
+                document.getElementById('stat-repos').textContent = data.repos;
+                document.getElementById('stat-stars').textContent = data.stars;
+            }
+
             async function fetchGitHubData() {
                 const username = 'bilalmlkdev';
+                const CACHE_KEY = 'github_stats_data';
+                const TIMESTAMP_KEY = 'github_stats_timestamp';
+                const FIVE_HOURS_MS = 5 * 60 * 60 * 1000;
+
+                const cachedData = localStorage.getItem(CACHE_KEY);
+                const cachedTime = localStorage.getItem(TIMESTAMP_KEY);
+                const now = Date.now();
+
+                // 1. Serve from cache if data exists and is younger than 5 hours
+                if (cachedData && cachedTime && (now - Number(cachedTime) < FIVE_HOURS_MS)) {
+                    renderGitHubStats(JSON.parse(cachedData));
+                    return;
+                }
+
+                // 2. Fetch fresh data if cache is expired or missing
                 try {
                     const userRes = await fetch(`https://api.github.com/users/${username}`);
                     const userData = await userRes.json();
-                    const reposRes = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
-                    const reposData = await reposRes.json();
-                    const totalStars = reposData.reduce((acc, repo) => acc + repo.stargazers_count, 0);
 
-                    const avatarImg = document.getElementById('github-avatar');
-                    const fallback = document.getElementById('avatar-fallback');
-                    if (userData.avatar_url) {
-                        avatarImg.src = userData.avatar_url;
-                        avatarImg.style.display = 'block';
-                        fallback.style.display = 'none';
+                    if (userData.message) {
+                        throw new Error(`GitHub API Error: ${userData.message}`);
                     }
 
-                    document.getElementById('stat-followers').textContent = userData.followers || 0;
-                    document.getElementById('stat-repos').textContent = userData.public_repos || 0;
-                    document.getElementById('stat-stars').textContent = totalStars || 0;
+                    const reposRes = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
+                    const reposData = await reposRes.json();
+
+                    let totalStars = 0;
+                    if (Array.isArray(reposData)) {
+                        totalStars = reposData.reduce((acc, repo) => acc + repo.stargazers_count, 0);
+                    }
+
+                    const stats = {
+                        avatarUrl: userData.avatar_url,
+                        followers: userData.followers || 0,
+                        repos: userData.public_repos || 0,
+                        stars: totalStars
+                    };
+
+                    // 3. Save payload and current timestamp
+                    localStorage.setItem(CACHE_KEY, JSON.stringify(stats));
+                    localStorage.setItem(TIMESTAMP_KEY, now.toString());
+
+                    renderGitHubStats(stats);
                 } catch (error) {
-                    console.error("Failed to fetch GitHub data:", error);
-                    document.getElementById('stat-followers').textContent = "0";
-                    document.getElementById('stat-repos').textContent = "0";
-                    document.getElementById('stat-stars').textContent = "0";
+                    console.error("Failed to fetch fresh GitHub data:", error);
+                    // Fallback to stale cache if network/rate-limit fails, otherwise show zeroed stats
+                    if (cachedData) {
+                        renderGitHubStats(JSON.parse(cachedData));
+                    } else {
+                        renderGitHubStats({ avatarUrl: '', followers: 0, repos: 0, stars: 0 });
+                    }
                 }
             }
 
