@@ -1,33 +1,19 @@
-<p align="center">
+<div align="center">
+
   <a href="https://seepreview.vercel.app/">
-    <img src="./projectLogo.svg" alt="JS Practice Projects" width="100%" height="150">
+    <img src="./projectLogo.svg" alt="JS Practice Projects" width="100%" height="120">
   </a>
-</p>
 
-<h1 align="center">JS Practice Projects</h1>
+# JS Practice Projects
 
-<p align="center"> 23 interactive vanilla <a href="https://seepreview.vercel.app/" target="_blank">JavaScript mini-apps</a>, browsable live from a single dashboard.</p>
+23 small <a href="https://seepreview.vercel.app/" target="_blank">JavaScript mini-apps</a>, real apps built with plain HTML, CSS, and JavaScript,
+<br />
+each solving one common UI problem. browsable live from a single dashboard.
 
-<p align="center">
-  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white" alt="HTML5" />
-  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white" alt="CSS3" />
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black" alt="JavaScript" />
-  <a href="https://github.com/bilalmlkdev/Js-practice-Projects/stargazers" target="_blank">
-    <img src="https://img.shields.io/github/stars/bilalmlkdev/Js-practice-Projects?style=flat" alt="GitHub stars">
-  </a>
-  <a href="https://github.com/bilalmlkdev/Js-practice-Projects/blob/main/LICENSE" target="_blank">
-    <img src="https://img.shields.io/github/license/bilalmlkdev/Js-practice-Projects?style=flat" alt="License">
-  </a>
-</p>
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Site-black?style=for-the-badge)](https://seepreview.vercel.app)
+[![GitHub Stars](https://img.shields.io/github/stars/bilalmlkdev/JS-Practice-Projects?style=for-the-badge&logo=github&color=yellow)](https://github.com/bilalmlkdev/JS-Practice-Projects.git)
 
-<p align="center">
-<a href="https://seepreview.vercel.app/" target="_blank">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://shieldcn.dev/badge/Live%20Preview-Js--practice--Projects?logo=eye&logoColor=currentColor&variant=outline&mode=dark&font=geist" />
-    <img alt="Live Preview" src="https://shieldcn.dev/badge/Live%20Preview-Js--practice--Projects?logo=eye&logoColor=currentColor&variant=outline&mode=light&font=geist" />
-  </picture>
-</a>
-</p>
+</div>
 
 
 <p align="center">
